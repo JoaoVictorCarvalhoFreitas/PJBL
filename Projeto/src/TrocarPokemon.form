@@ -16,7 +16,7 @@
         <properties/>
         <border type="line"/>
         <children>
-          <component id="3d632" class="javax.swing.JButton" binding="selecionarButton" default-binding="true">
+          <component id="3d632" class="javax.swing.JButton" binding="pokemon2">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -27,7 +27,7 @@
               <text value="Selecionar"/>
             </properties>
           </component>
-          <component id="edbe" class="javax.swing.JProgressBar" binding="progressBar1" default-binding="true">
+          <component id="edbe" class="javax.swing.JProgressBar" binding="progressBar2">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -46,7 +46,7 @@
         <properties/>
         <border type="line"/>
         <children>
-          <component id="212bf" class="javax.swing.JButton" binding="selecionarButton1" default-binding="true">
+          <component id="212bf" class="javax.swing.JButton" binding="pokemon3">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -57,7 +57,7 @@
               <text value="Selecionar"/>
             </properties>
           </component>
-          <component id="83973" class="javax.swing.JProgressBar" binding="progressBar2" default-binding="true">
+          <component id="83973" class="javax.swing.JProgressBar" binding="progressBar3">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -76,7 +76,7 @@
         <properties/>
         <border type="line"/>
         <children>
-          <component id="3174a" class="javax.swing.JButton" binding="selecionarButton2" default-binding="true">
+          <component id="3174a" class="javax.swing.JButton" binding="pokemon4">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -87,7 +87,7 @@
               <text value="Selecionar"/>
             </properties>
           </component>
-          <component id="629e6" class="javax.swing.JProgressBar" binding="progressBar3" default-binding="true">
+          <component id="629e6" class="javax.swing.JProgressBar" binding="progressBar4">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -106,7 +106,7 @@
         <properties/>
         <border type="line"/>
         <children>
-          <component id="22643" class="javax.swing.JButton" binding="selecionarButton3" default-binding="true">
+          <component id="22643" class="javax.swing.JButton" binding="pokemon5">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -117,7 +117,7 @@
               <text value="Selecionar"/>
             </properties>
           </component>
-          <component id="70f7d" class="javax.swing.JProgressBar" default-binding="true">
+          <component id="70f7d" class="javax.swing.JProgressBar" binding="progressBar5">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -136,7 +136,7 @@
         <properties/>
         <border type="line"/>
         <children>
-          <component id="e2cb1" class="javax.swing.JButton" binding="selecionarButton4" default-binding="true">
+          <component id="e2cb1" class="javax.swing.JButton" binding="pokemon6">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -147,7 +147,7 @@
               <text value="Selecionar"/>
             </properties>
           </component>
-          <component id="ca30" class="javax.swing.JProgressBar" default-binding="true">
+          <component id="ca30" class="javax.swing.JProgressBar" binding="progressBar6">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -176,7 +176,7 @@
               <verticalTextPosition value="0"/>
             </properties>
           </component>
-          <component id="b7f41" class="javax.swing.JProgressBar" default-binding="true">
+          <component id="b7f41" class="javax.swing.JProgressBar" binding="progressBar1">
             <constraints border-constraint="South"/>
             <properties>
               <background color="-12327574"/>
