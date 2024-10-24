@@ -4,16 +4,16 @@ import java.awt.*;
 public class InterfaceBatalha {
     private JPanel BatalhaInterface;
     private JLabel PokeAdv;
-    private JProgressBar progressBar1;
-    private JButton button1;
-    private JButton button2;
-    private JButton button3;
-    private JButton button5;
+    private JProgressBar vida_bar_poke_aliado;
+    private JButton ataque1;
+    private JButton ataque4;
+    private JButton ataque2;
+    private JButton ataques;
     private JButton ataque1Button;
     private JButton ataque2Button;
     private JButton ataque3Button;
     private JButton ataque4Button;
-    private JProgressBar progressBar2;
+    private JProgressBar vida_bar_poke_rival;
     private JPanel AtaquesMensagens;
     private JPanel acoes;
     private JPanel hpAliado;
@@ -46,10 +46,10 @@ public class InterfaceBatalha {
         BatalhaInterface.add(PokeAdv, gbc);
 
         // Barra de progresso 1
-        progressBar1 = new JProgressBar();
+        vida_bar_poke_aliado = new JProgressBar();
         gbc.gridx = 1;
         gbc.gridy = 1;
-        BatalhaInterface.add(progressBar1, gbc);
+        BatalhaInterface.add(vida_bar_poke_aliado, gbc);
 
         // Espaço vazio (vspacer) para ajustar o layout
         gbc.gridy = 2;
@@ -74,20 +74,20 @@ public class InterfaceBatalha {
         JPanel buttonGrid = new JPanel(new GridLayout(2, 2, 10, 10)); // Adicionando espaçamento de 10px entre os botões
 
         // Botão 1
-        button1 = new JButton("Button 1");
-        buttonGrid.add(button1);
+        ataque1 = new JButton("Button 1");
+        buttonGrid.add(ataque1);
 
         // Botão 2
-        button2 = new JButton("Button 2");
-        buttonGrid.add(button2);
+        ataque4 = new JButton("Button 2");
+        buttonGrid.add(ataque4);
 
         // Botão 3
-        button3 = new JButton("Button 3");
-        buttonGrid.add(button3);
+        ataque2 = new JButton("Button 3");
+        buttonGrid.add(ataque2);
 
         // Botão 5
-        button5 = new JButton("Button 5");
-        buttonGrid.add(button5);
+        ataques = new JButton("Button 5");
+        buttonGrid.add(ataques);
 
         gbc.gridx = 1;
         gbc.gridy = 6;
@@ -102,6 +102,5 @@ public class InterfaceBatalha {
         // Inicializando a interface da batalha
         SwingUtilities.invokeLater(InterfaceBatalha::new);
     }
-
 
 }
