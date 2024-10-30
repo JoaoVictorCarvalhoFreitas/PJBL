@@ -3,9 +3,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class Dados {
-    static String  arquivoClientes = "clientes.ser" ;
-    static String arquivoAdmin = "Adms.ser";
-    static String arquivoProdutos = "produtos.ser";
+    private static String  arquivoClientes = "clientes.ser" ;
+    private static String arquivoAdmin = "Adms.ser";
+    private static String arquivoProdutos = "produtos.ser";
 
 
     // Exemplo de método de login que retorna o usuário
