@@ -12,6 +12,7 @@ public class CadastroPage {
     private JButton Cadastrar;
     public JPanel PainelCadastroUI;
     private JFrame frame;
+    private JLabel logo;
 
 
 

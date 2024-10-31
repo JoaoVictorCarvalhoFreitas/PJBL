@@ -15,6 +15,9 @@ public class Login {
     private JButton cadastrarSeButton;
 
     Login() {
+        email = new JTextField();
+        email.setBorder(null);
+
         String placeholdersenha = "Digite sua senha";
 
         String placeholderemail = "Digite seu email aqui";
