@@ -54,7 +54,7 @@ public class Login {
                 if (String.valueOf(senha.getPassword()).equals(placeholdersenha)) {
                     senha.setText("");
                     senha.setForeground(Color.BLACK);
-                    senha.setEchoChar('•');
+                    senha.setEchoChar('*');
 
                 }
             }
