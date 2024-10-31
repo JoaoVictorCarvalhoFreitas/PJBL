@@ -10,7 +10,7 @@ public class CadastroPage {
     private JPasswordField Senha2;
     public JButton Login;
     private JButton Cadastrar;
-    private JPanel PainelCadastroUI;
+    public JPanel PainelCadastroUI;
     private JFrame frame;
 
 
