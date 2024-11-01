@@ -9,30 +9,26 @@ public class Login {
     private JButton BotaoEntrar;
     private JPasswordField senha;
     private JPanel PainelLoginUI;
-    private JButton Cadastrar;
     private JButton Admin;
     private JPanel PainelBotoes;
-    private JButton cadastrarSeButton;
+    private JButton BotaoCadastrar;
 
     Login() {
-        email = new JTextField();
         email.setBorder(null);
 
         String placeholdersenha = "Digite sua senha";
 
         String placeholderemail = "Digite seu email aqui";
 
-        // Configura o estilo do placeholder
         email.setForeground(Color.GRAY);
         email.setText(placeholderemail);
 
-        // Adiciona um FocusListener para alternar o placeholder
         email.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
                 if (email.getText().equals(placeholderemail)) {
                     email.setText("");
-                    email.setForeground(Color.BLACK); // Altera a cor para texto normal
+                    email.setForeground(Color.BLACK);
                 }
             }
 
@@ -40,7 +36,7 @@ public class Login {
             public void focusLost(FocusEvent e) {
                 if (email.getText().isEmpty()) {
                     email.setText(placeholderemail);
-                    email.setForeground(Color.GRAY); // Retorna à cor do placeholder
+                    email.setForeground(Color.GRAY);
                 }
             }
         });
@@ -85,7 +81,7 @@ public class Login {
     }
 
     public JButton getBotaoCadastrar() {
-        return this.Cadastrar;
+        return BotaoCadastrar;
     }
     public JButton getBotaoAdmin() {
         return this.Admin;

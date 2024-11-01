@@ -3,83 +3,93 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
-public class CardapioProdutos extends JPanel {
+public class CardapioProdutos {
+    private JPanel panelPrincipal;
     private JPanel panelProdutos;
     private JButton botaoVoltar;
+    private JPanel topPanel;
+    private ArrayList<Produto> produtos;
 
     public CardapioProdutos(Consumer<Produto> onComprarProduto) {
-        // Configuração do layout do CardapioProdutos
-        ArrayList<Produto> produtos = Dados.obterProdutos();
+        carregaPainelPrincipal(onComprarProduto);
+    }
 
-        setLayout(new BorderLayout());
+    private void carregaPainelPrincipal(Consumer<Produto> onComprarProduto) {
+        panelPrincipal = new JPanel(new BorderLayout());
 
-        // Botão de Voltar (sem ação associada)
+        // Configuração do painel do botão "Voltar"
         botaoVoltar = new JButton("Voltar");
-        JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT)); // Alinha o botão à esquerda
+        topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT)); // Alinha o botão à esquerda
         topPanel.add(botaoVoltar);
-        add(topPanel, BorderLayout.NORTH);
+        topPanel.setPreferredSize(new Dimension(100, 60));
 
-        // Painel para os cards dos produtos
+        // Adiciona o painel do botão "Voltar" ao topo do painel principal
+        panelPrincipal.add(topPanel, BorderLayout.NORTH);
+
+        // Configuração do painel de produtos
         panelProdutos = new JPanel();
         panelProdutos.setLayout(new GridLayout(0, 2, 10, 10)); // Grid com duas colunas e espaçamento entre os cards
         panelProdutos.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        // Carrega os produtos em cards
+        // Recupera e carrega os produtos em cards
+        recuperaProdutos();
         carregarProdutos(produtos, onComprarProduto);
 
-        // Adiciona o painel de produtos a um JScrollPane e o insere no JPanel principal
+        // Adiciona o painel de produtos dentro de um JScrollPane e o insere no panelPrincipal
         JScrollPane scrollPane = new JScrollPane(panelProdutos);
-        add(scrollPane, BorderLayout.CENTER);
+        panelPrincipal.add(scrollPane, BorderLayout.CENTER);
     }
 
-    public JButton getBotaoVoltar(){
-        return botaoVoltar;
+    public void atualizarProdutos() {
+        produtos = Dados.obterProdutos();
+
+        panelProdutos.removeAll();
+
+        carregarProdutos(produtos, produto -> {
+            JOptionPane.showMessageDialog(panelPrincipal, "Produto " + produto.getNome() + " adicionado ao carrinho.");
+        });
+
+        panelProdutos.revalidate();
+        panelProdutos.repaint();
+
     }
 
-
-
-    public JButton getBotaoComprar(){
-        return botaoVoltar;
+    private void recuperaProdutos() {
+        produtos = Dados.obterProdutos();
     }
 
-    public JPanel getPanelProdutos() {
-        return panelProdutos;
-    }
-
-    private void carregarProdutos(ArrayList<Produto> produtos,Consumer<Produto> onComprarProduto) {
+    private void carregarProdutos(ArrayList<Produto> produtos, Consumer<Produto> onComprarProduto) {
         for (Produto produto : produtos) {
-            // Criação de cada card de produto
             JPanel card = new JPanel();
             card.setLayout(new BorderLayout());
             card.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-            card.setBackground(Color.WHITE);
             card.setPreferredSize(new Dimension(250, 150));
 
-            // Informações do produto
             JLabel nomeLabel = new JLabel(produto.getNome());
             JLabel descricaoLabel = new JLabel("<html><body style='width: 200px'>" + produto.getDescricao() + "</body></html>");
             JLabel precoLabel = new JLabel(String.format("Preço: R$ %.2f", produto.getPreco()));
 
-            // Botão de compra
             JButton comprarButton = new JButton("Comprar");
-
             comprarButton.addActionListener(e -> onComprarProduto.accept(produto));
 
-            // Painel de informações do produto
             JPanel infoPanel = new JPanel();
             infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
             infoPanel.add(nomeLabel);
             infoPanel.add(descricaoLabel);
             infoPanel.add(precoLabel);
 
-            // Adiciona componentes ao card
             card.add(infoPanel, BorderLayout.CENTER);
             card.add(comprarButton, BorderLayout.SOUTH);
 
-            // Adiciona o card ao painel principal
             panelProdutos.add(card);
         }
-        panelProdutos.revalidate();
-        panelProdutos.repaint();
+    }
+
+    public JPanel getPanel() {
+        return panelPrincipal;
+    }
+
+    public JButton getBotaoVoltar() {
+        return botaoVoltar;
     }
 }
