@@ -26,16 +26,8 @@ public class Interfaces {
 
     public Interfaces(){
         painelPrincipal = new JPanel(new CardLayout());
+        criaPainelProdutos();
 
-
-        PaginaCardapioProdutos = new CardapioProdutos(produto -> {
-            if (usuarioLogado != null) {
-                usuarioLogado.adicionaProdutoCarrinho(produto);
-                JOptionPane.showMessageDialog(painelPrincipal, "Produto "+ produto.getNome() + " adicionado ao carrinho de : " + usuarioLogado.getNome());
-            } else {
-                JOptionPane.showMessageDialog(painelPrincipal, "Usuário não está logado.");
-            }
-        });
         painelLogin = paginaLogin.criarPainelLogin();
         painelCadastro = paginaCadastro.criarPainelCadastro();
         painelCardapio = PaginaCardapioProdutos.getPanel();
@@ -216,6 +208,16 @@ public class Interfaces {
 
     }
 
+    public void criaPainelProdutos(){
+        PaginaCardapioProdutos = new CardapioProdutos(produto -> {
+            if (usuarioLogado != null) {
+                usuarioLogado.adicionaProdutoCarrinho(produto);
+                JOptionPane.showMessageDialog(painelPrincipal, "Produto "+ produto.getNome() + " adicionado ao carrinho de : " + usuarioLogado.getNome());
+            } else {
+                JOptionPane.showMessageDialog(painelPrincipal, "Usuário não está logado.");
+            }
+        });
 
+    }
 
 }

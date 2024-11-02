@@ -19,6 +19,10 @@ public class Carrinho implements Serializable {
         }
     }
 
+    public ArrayList<Produto> getCarrinho() {
+        return carrinho;
+    }
+
 
 
 }

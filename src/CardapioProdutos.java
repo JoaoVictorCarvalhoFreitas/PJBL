@@ -23,19 +23,15 @@ public class CardapioProdutos {
         topPanel.add(botaoVoltar);
         topPanel.setPreferredSize(new Dimension(100, 60));
 
-        // Adiciona o painel do botão "Voltar" ao topo do painel principal
         panelPrincipal.add(topPanel, BorderLayout.NORTH);
 
-        // Configuração do painel de produtos
         panelProdutos = new JPanel();
         panelProdutos.setLayout(new GridLayout(0, 2, 10, 10)); // Grid com duas colunas e espaçamento entre os cards
         panelProdutos.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        // Recupera e carrega os produtos em cards
         recuperaProdutos();
         carregarProdutos(produtos, onComprarProduto);
 
-        // Adiciona o painel de produtos dentro de um JScrollPane e o insere no panelPrincipal
         JScrollPane scrollPane = new JScrollPane(panelProdutos);
         panelPrincipal.add(scrollPane, BorderLayout.CENTER);
     }
@@ -70,7 +66,12 @@ public class CardapioProdutos {
             JLabel precoLabel = new JLabel(String.format("Preço: R$ %.2f", produto.getPreco()));
 
             JButton comprarButton = new JButton("Comprar");
-            comprarButton.addActionListener(e -> onComprarProduto.accept(produto));
+            comprarButton.addActionListener(e ->{
+                onComprarProduto.accept(produto);
+                atualizarProdutos();
+                    }
+
+            );
 
             JPanel infoPanel = new JPanel();
             infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));

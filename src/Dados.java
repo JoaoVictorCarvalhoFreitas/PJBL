@@ -318,7 +318,7 @@ public abstract class Dados {
 
             while (true) {
                 try {
-                        usuarios.add((Usuario)in.readObject());
+                    usuarios.add((Usuario)in.readObject());
                 } catch (EOFException e) {
                     break;
                 }
@@ -329,6 +329,7 @@ public abstract class Dados {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
         return usuarios;
 
     }
@@ -429,11 +430,28 @@ public abstract class Dados {
             salvaListaUsuarios(usuarios);
     }
 
-    public static void mostraUsuarios(){
+    public static void mostraCarrinhoUsuarios(){
         for(Usuario u : obterUsuarios()){
-            System.out.println(u instanceof Cliente);
+//            if(u instanceof Cliente c){
+//                System.out.println(u.getNome()+":");
+//                c.getCarrinho().imprimeCarrinh();
+//
+//                }
+            System.out.println(u);
+            }
         }
-    }
+
+
+        public static void deletaUsuario(String email){
+            ArrayList<Usuario> usuarios = obterUsuarios();
+            for (int i = 0; i < usuarios.size(); i++) {
+                if (usuarios.get(i).getEmail().equals(email)) {
+                    usuarios.remove(i);
+                }
+            }
+            salvaListaUsuarios(usuarios);
+        }
+
 
 }
 

@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
-        Interfaces interfaces = new Interfaces();
+//        Interfaces interfaces = new Interfaces();
 //        Login login = new Login();
 //        Frame frame = new Frame();
 //        frame.add(login.criarPainelLogin());
@@ -25,7 +25,8 @@ public class Main {
 //
 //        Admin adm = new Admin(1,"AdmJoao","@AdmJoao","adm123");
 //        Dados.cadastraNovoUsuarioCliente(adm);
-//        Dados.mostraUsuarios();
+//        Dados.deletaUsuario("Joao@Joao");
+        Dados.mostraCarrinhoUsuarios();
 
     }
 }
