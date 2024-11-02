@@ -23,6 +23,14 @@ public class Carrinho implements Serializable {
         return carrinho;
     }
 
+    public ArrayList<String> getListaNomes() {
+        ArrayList<String> lista = new ArrayList<>();
+        for (Produto produto : carrinho) {
+            lista.add(produto.getNome());
+        }
+        return lista;
+    }
+
 
 
 }

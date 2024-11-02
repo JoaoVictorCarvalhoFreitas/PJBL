@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public abstract class Dados {
     static String arquivoUsuario = "Usuarios.ser";
     static String arquivoProdutos = "produtos.ser";
-
+    static String arquivoCarrinho = "carrinho.ser";
 
 
 
@@ -425,19 +425,19 @@ public abstract class Dados {
             for (int i = 0; i < usuarios.size(); i++) {
                 if (usuarios.get(i).getId() == id) {
                     usuarios.set(i, u);
+                    System.out.println("Usuario: " + u.getNome() + " atualizado com sucesso.");
                 }
             }
+
             salvaListaUsuarios(usuarios);
     }
 
     public static void mostraCarrinhoUsuarios(){
         for(Usuario u : obterUsuarios()){
-//            if(u instanceof Cliente c){
-//                System.out.println(u.getNome()+":");
-//                c.getCarrinho().imprimeCarrinh();
-//
-//                }
-            System.out.println(u);
+            if(u instanceof Cliente c){
+                System.out.println(u.getNome()+":");
+                c.getCarrinho().imprimeCarrinh();
+                }
             }
         }
 
@@ -451,6 +451,8 @@ public abstract class Dados {
             }
             salvaListaUsuarios(usuarios);
         }
+
+
 
 
 }
