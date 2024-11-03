@@ -13,8 +13,7 @@ public class PaginaCarrinho {
     private JButton Voltar;
     private JButton Comprar;
     private JLabel LabelCarrrinho;
-    private JPanel painelProdutosOut;
-    private JSpinner spinner1;
+    private JPanel PainelTabelProdutos;
 
 
     public PaginaCarrinho() {
@@ -27,46 +26,55 @@ public class PaginaCarrinho {
     public JButton getBotaoComprar(){
         return Comprar;
     }
-    public JPanel getPainelCarrinho(Cliente c){
-        return constroiTabelaProdutos(c);
+    public JPanel getPainelCarrinho(Cliente client){
+
+        constroiTabelaProdutos(client);
+//        JPanel PainelCarrinho = new JPanel();
+//        PainelCarrinho.setLayout(new FlowLayout());
+//
+//
+//        PainelCarrinho.removeAll();
+//        PainelCarrinho.add(Voltar);
+//        PainelCarrinho.add(constroiTabelaProdutos(client));
+//        PainelCarrinho.repaint();
+        return PainelCarrinho;
     }
-    public void atualizaCarrinho(Carrinho carrinho){
-        ArrayList<Produto> produtos = carrinho.getCarrinho();
+    public void atualizaCarrinho(Cliente c){
+        ArrayList<Produto> produtos = c.getCarrinho().getCarrinho();
         for (Produto produto : produtos){
-
         }
-
     }
 
-    public JPanel constroiTabelaProdutos(Cliente c) {
-        JPanel painelProdutosOut = new JPanel();
-        painelProdutosOut.setLayout(new BoxLayout(painelProdutosOut, BoxLayout.Y_AXIS));
+    public void constroiTabelaProdutos(Cliente cliente) {
 
-        Carrinho car = c.getCarrinho();
+
+
+        PainelTabelProdutos.setLayout(new BoxLayout(PainelTabelProdutos, BoxLayout.Y_AXIS));
+
+        Carrinho car = cliente.getCarrinho();
         ArrayList<Produto> produtos = car.getCarrinho();
 
         for (Produto produto : produtos) {
-            JPanel painelProdutosIntern = new JPanel(new FlowLayout(FlowLayout.LEFT)); // Painel de uma linha para um produto
+            JPanel painelProdutosIntern = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
             JLabel nomeProdutoLabel = new JLabel(produto.getNome());
             JSpinner quantidadeSpinner = new JSpinner(new SpinnerNumberModel(1, 1, 100, 1));
             JLabel precoLabel = new JLabel(String.valueOf(produto.getPreco()));
 
-            quantidadeSpinner.addChangeListener(new ChangeListener() {
-                public void stateChanged(ChangeEvent e) {
-                    double quantidade = (int) quantidadeSpinner.getValue();
-                    precoLabel.setText(String.format("%.2f", quantidade * produto.getPreco()));
-                    painelProdutosOut.repaint();
-                }
+            quantidadeSpinner.addChangeListener(e -> {
+                double quantidade = (int) quantidadeSpinner.getValue();
+                precoLabel.setText(String.format("%.2f", quantidade * produto.getPreco()));
+                PainelTabelProdutos.repaint();
             });
 
             painelProdutosIntern.add(nomeProdutoLabel);
             painelProdutosIntern.add(quantidadeSpinner);
             painelProdutosIntern.add(precoLabel);
 
-            painelProdutosOut.add(painelProdutosIntern);
+            PainelTabelProdutos.add(painelProdutosIntern);
         }
 
-        return painelProdutosOut;
     }
+
+
 }

@@ -20,6 +20,8 @@ public class Interfaces {
     private Cliente usuarioLogado;
     private Admin admin;
     CardapioProdutos PaginaCardapioProdutos ;
+    private PaginaCarrinho PaginaCarrinho;
+    private JPanel painelCarrinhoUsuario;
 
 
 
@@ -41,6 +43,8 @@ public class Interfaces {
         painelPrincipal.add(painelCadastro,"Pagina de Cadastro");
         painelPrincipal.add(painelCardapio,"Pagina de Cardapio");
         painelPrincipal.add(painelAdm,"Pagina de Adm");
+
+
 
         frame.add(painelPrincipal);
         frame.setVisible(true);
@@ -89,6 +93,8 @@ public class Interfaces {
                 if (usuarioLogado != null) {
                     JOptionPane.showMessageDialog(painelPrincipal, "Usuário logado com sucesso");
                     TrocarParaPainel("Pagina de Cardapio");
+                    criaCarrinho();
+                    painelPrincipal.add(painelCarrinhoUsuario,"Pagina de Carrinho");
                 } else if(admin != null) {
                     JOptionPane.showMessageDialog(painelPrincipal, "Admin logado com sucesso");
                     TrocarParaPainel("Pagina de Adm");
@@ -98,6 +104,8 @@ public class Interfaces {
                 }
             }
         });
+
+
 
         paginaLogin.getBotaoCadastrar().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -138,7 +146,18 @@ public class Interfaces {
             public void actionPerformed(ActionEvent e) {
                 TrocarParaPainel("Pagina de Login");
                 Dados.atualizaUsuario(usuarioLogado.getId(),usuarioLogado);
+                usuarioLogado = (Cliente)Dados.obterUsuarioPorEmail(usuarioLogado.getEmail());
                 usuarioLogado.getCarrinho().imprimeCarrinh();
+            }
+        });
+
+        PaginaCardapioProdutos.getBotaoCarrinho().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if(PaginaCarrinho != null){
+                    criaCarrinho();
+                }
+                TrocarParaPainel("Pagina de Carrinho");
             }
         });
 
@@ -206,6 +225,7 @@ public class Interfaces {
 
         });
 
+
     }
 
     public void criaPainelProdutos(){
@@ -219,9 +239,32 @@ public class Interfaces {
                 usuarioLogado = (Cliente)Dados.obterUsuarioPorEmail(usuarioLogado.getEmail());
                 JOptionPane.showMessageDialog(painelPrincipal, "Produto "+ produto.getNome() + " adicionado ao carrinho de : " + usuarioLogado.getNome());
                 JOptionPane.showMessageDialog(painelPrincipal,usuarioLogado.getCarrinho().getListaNomes());
-
         });
 
+    }
+
+    public void criaCarrinho(){
+
+        //cria a pagina de carrinho e adiciona os eventlisteners e adiona a pagina ao painel principal
+        PaginaCarrinho = new PaginaCarrinho();
+        painelCarrinhoUsuario = PaginaCarrinho.getPainelCarrinho(usuarioLogado);
+        painelCarrinhoUsuario.repaint();
+
+
+
+        PaginaCarrinho.getBotaoVoltar().addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                TrocarParaPainel("Pagina de Cardapio");
+            }
+        });
+
+        PaginaCarrinho.getBotaoComprar().addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                usuarioLogado.getCarrinho().limpaCarrinho();
+                Dados.atualizaUsuario(usuarioLogado.getId(),usuarioLogado);
+                usuarioLogado = (Cliente)Dados.obterUsuarioPorEmail(usuarioLogado.getEmail());
+            }
+        });
     }
 
 }

@@ -7,8 +7,11 @@ public class CardapioProdutos {
     private JPanel panelPrincipal;
     private JPanel panelProdutos;
     private JButton botaoVoltar;
-    private JPanel topPanel;
+    private JPanel topPanelLeft;
+    private JPanel topPanelRight;
     private ArrayList<Produto> produtos;
+    private JButton botaoCarrinho;
+    private JPanel topPanel;
 
     public CardapioProdutos(Consumer<Produto> onComprarProduto) {
         carregaPainelPrincipal(onComprarProduto);
@@ -17,11 +20,22 @@ public class CardapioProdutos {
     private void carregaPainelPrincipal(Consumer<Produto> onComprarProduto) {
         panelPrincipal = new JPanel(new BorderLayout());
 
-        // Configuração do painel do botão "Voltar"
+
         botaoVoltar = new JButton("Voltar");
-        topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT)); // Alinha o botão à esquerda
-        topPanel.add(botaoVoltar);
-        topPanel.setPreferredSize(new Dimension(100, 60));
+        // Configuração do painel do botão "Voltar"
+        topPanelLeft = new JPanel(new FlowLayout(FlowLayout.LEFT)); // Alinha o botão à esquerda
+        topPanelLeft.add(botaoVoltar);
+        topPanelLeft.setPreferredSize(new Dimension(100, 60));
+
+        botaoCarrinho = new JButton("Carrinho");
+        topPanelRight = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        topPanelRight.add(botaoCarrinho);
+        topPanelRight.setPreferredSize(new Dimension(100, 60));
+
+        topPanel = new JPanel(new BorderLayout());
+        topPanel.add(topPanelLeft, BorderLayout.WEST);
+        topPanel.add(topPanelRight, BorderLayout.EAST);
+
 
         panelPrincipal.add(topPanel, BorderLayout.NORTH);
 
@@ -69,6 +83,7 @@ public class CardapioProdutos {
             comprarButton.addActionListener(e ->{
                 onComprarProduto.accept(produto);
                 atualizarProdutos();
+
                     }
             );
 
@@ -92,4 +107,6 @@ public class CardapioProdutos {
     public JButton getBotaoVoltar() {
         return botaoVoltar;
     }
+
+    public JButton getBotaoCarrinho(){return botaoCarrinho;}
 }
