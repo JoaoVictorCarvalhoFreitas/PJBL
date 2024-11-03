@@ -210,15 +210,16 @@ public class Interfaces {
 
     public void criaPainelProdutos(){
         PaginaCardapioProdutos = new CardapioProdutos(produto -> {
-            if (usuarioLogado != null) {
+            if (usuarioLogado == null) {
+                JOptionPane.showMessageDialog(painelPrincipal, "Usuário não está logado.");
+                return;
+            }
                 usuarioLogado.adicionaProdutoCarrinho(produto);
                 Dados.atualizaUsuario(usuarioLogado.getId(),usuarioLogado);
                 usuarioLogado = (Cliente)Dados.obterUsuarioPorEmail(usuarioLogado.getEmail());
                 JOptionPane.showMessageDialog(painelPrincipal, "Produto "+ produto.getNome() + " adicionado ao carrinho de : " + usuarioLogado.getNome());
                 JOptionPane.showMessageDialog(painelPrincipal,usuarioLogado.getCarrinho().getListaNomes());
-            } else {
-                JOptionPane.showMessageDialog(painelPrincipal, "Usuário não está logado.");
-            }
+
         });
 
     }

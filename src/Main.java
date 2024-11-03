@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
-//        Interfaces interfaces = new Interfaces();
+        Interfaces interfaces = new Interfaces();
 //        Login login = new Login();
 //        Frame frame = new Frame();
 //        frame.add(login.criarPainelLogin());
@@ -26,7 +26,15 @@ public class Main {
 //        Admin adm = new Admin(1,"AdmJoao","@AdmJoao","adm123");
 //        Dados.cadastraNovoUsuarioCliente(adm);
 //        Dados.deletaUsuario("Joao@Joao");
-        Dados.mostraCarrinhoUsuarios();
+//        Dados.mostraCarrinhoUsuarios();
+
+
+//        PaginaCarrinho p = new PaginaCarrinho();
+//        JFrame frame = new JFrame();
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setSize(400, 400);
+//        frame.add(p.getPainelCarrinho((Cliente)Dados.obterUsuarioPorEmail("Joao@Joao")));
+//        frame.setVisible(true);
 
     }
 }

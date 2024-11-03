@@ -70,7 +70,6 @@ public class CardapioProdutos {
                 onComprarProduto.accept(produto);
                 atualizarProdutos();
                     }
-
             );
 
             JPanel infoPanel = new JPanel();
