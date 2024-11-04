@@ -147,7 +147,9 @@ public class Interfaces {
                 TrocarParaPainel("Pagina de Login");
                 Dados.atualizaUsuario(usuarioLogado.getId(),usuarioLogado);
                 usuarioLogado = (Cliente)Dados.obterUsuarioPorEmail(usuarioLogado.getEmail());
-                usuarioLogado.getCarrinho().imprimeCarrinh();
+
+                if (usuarioLogado != null)usuarioLogado.getCarrinho().imprimeCarrinh();
+
             }
         });
 
@@ -236,9 +238,9 @@ public class Interfaces {
             }
                 usuarioLogado.adicionaProdutoCarrinho(produto);
                 Dados.atualizaUsuario(usuarioLogado.getId(),usuarioLogado);
-                usuarioLogado = (Cliente)Dados.obterUsuarioPorEmail(usuarioLogado.getEmail());
                 JOptionPane.showMessageDialog(painelPrincipal, "Produto "+ produto.getNome() + " adicionado ao carrinho de : " + usuarioLogado.getNome());
                 JOptionPane.showMessageDialog(painelPrincipal,usuarioLogado.getCarrinho().getListaNomes());
+
         });
 
     }

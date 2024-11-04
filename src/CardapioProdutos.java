@@ -83,7 +83,6 @@ public class CardapioProdutos {
             comprarButton.addActionListener(e ->{
                 onComprarProduto.accept(produto);
                 atualizarProdutos();
-
                     }
             );
 
