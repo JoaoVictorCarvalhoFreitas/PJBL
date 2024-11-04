@@ -29,25 +29,22 @@ public class PaginaCarrinho {
     public JPanel getPainelCarrinho(Cliente client){
 
         constroiTabelaProdutos(client);
-//        JPanel PainelCarrinho = new JPanel();
-//        PainelCarrinho.setLayout(new FlowLayout());
-//
-//
-//        PainelCarrinho.removeAll();
-//        PainelCarrinho.add(Voltar);
-//        PainelCarrinho.add(constroiTabelaProdutos(client));
-//        PainelCarrinho.repaint();
         return PainelCarrinho;
     }
     public void atualizaCarrinho(Cliente c){
         ArrayList<Produto> produtos = c.getCarrinho().getCarrinho();
         for (Produto produto : produtos){
+
         }
     }
 
     public void constroiTabelaProdutos(Cliente cliente) {
 
-
+        try {
+            PainelTabelProdutos.removeAll();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         PainelTabelProdutos.setLayout(new BoxLayout(PainelTabelProdutos, BoxLayout.Y_AXIS));
 

@@ -35,6 +35,9 @@ public class Main {
 //        frame.setSize(400, 400);
 //        frame.add(p.getPainelCarrinho((Cliente)Dados.obterUsuarioPorEmail("Joao@Joao")));
 //        frame.setVisible(true);
+//        Cliente c = (Cliente)Dados.obterUsuarioPorEmail("Joao@Joao");
+//        c.getCarrinho().limpaCarrinho();
+//        Dados.atualizaUsuario(c.getId(),c);
 
     }
 }

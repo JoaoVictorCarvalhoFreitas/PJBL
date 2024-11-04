@@ -31,10 +31,6 @@ public class Carrinho implements Serializable {
         return lista;
     }
 
-    public void limpaCarrinho() {
-        carrinho.clear();
-    }
-
 
 
 
