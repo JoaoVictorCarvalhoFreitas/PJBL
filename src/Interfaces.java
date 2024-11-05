@@ -22,13 +22,13 @@ public class Interfaces {
     private JPanel painelCarrinhoUsuario;
 
     public Interfaces() {
+
         painelPrincipal = new JPanel(new CardLayout());
 
         // Inicialização dos painéis
         painelLogin = paginaLogin.criarPainelLogin();
         painelCadastro = paginaCadastro.criarPainelCadastro();
         criaPainelProdutos();
-        painelCardapio = PaginaCardapioProdutos.getPanel();
         painelAdm = paginaAdm.getPainelAdm();
 
         JFrame frame = new JFrame();
@@ -53,7 +53,6 @@ public class Interfaces {
     }
 
     public void AtribuiBotoes() {
-        // Botão de login
         paginaLogin.getBotaoEntrar().addActionListener(e -> {
             String email = paginaLogin.getEmail().getText();
             String senha = new String(paginaLogin.getSenha().getPassword());
@@ -70,8 +69,8 @@ public class Interfaces {
                     usuarioLogado = (Cliente) Dados.logar(email, senha);
                     JOptionPane.showMessageDialog(painelLogin, "Usuário " + usuarioLogado.getNome() + " logado");
                 }
-                // Recarrega o painel de produtos com o usuário logado
-                criaPainelProdutos();
+                painelCardapio.revalidate();
+                painelCardapio.repaint();
 
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(painelLogin, ex.getMessage());
@@ -81,6 +80,8 @@ public class Interfaces {
                 JOptionPane.showMessageDialog(painelPrincipal, "Usuário logado com sucesso");
                 TrocarParaPainel("Pagina de Cardapio");
                 criaCarrinho();
+                painelCardapio.revalidate();
+                painelCardapio.repaint();
                 painelPrincipal.add(painelCarrinhoUsuario, "Pagina de Carrinho");
             } else if (admin != null) {
                 JOptionPane.showMessageDialog(painelPrincipal, "Admin logado com sucesso");
@@ -88,9 +89,9 @@ public class Interfaces {
             } else {
                 JOptionPane.showMessageDialog(painelPrincipal, "Email ou senha incorretos", "Erro de Login", JOptionPane.ERROR_MESSAGE);
             }
+
         });
 
-        // Ações dos botões de navegação e cadastro
         paginaLogin.getBotaoCadastrar().addActionListener(e -> TrocarParaPainel("Pagina de Cadastro"));
 
         paginaCadastro.getBotaoLogin().addActionListener(e -> TrocarParaPainel("Pagina de Login"));
@@ -116,7 +117,6 @@ public class Interfaces {
             }
         });
 
-        // Botões do painel de administração
         paginaAdm.getBotaoCadastraProduto().addActionListener(e -> {
             String nome = paginaAdm.getNomeProdutoCadastro().getText();
             String descricao = paginaAdm.getDescricaoProdutoCadastro().getText();
@@ -129,6 +129,7 @@ public class Interfaces {
             } else {
                 try {
                     admin.cadastrarProduto(nome, descricao, preco);
+                    criaPainelProdutos();
                     JOptionPane.showMessageDialog(painelAdm, "Produto cadastrado com sucesso");
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(painelAdm, ex.getMessage());
@@ -144,11 +145,19 @@ public class Interfaces {
 
         PaginaCardapioProdutos.getBotaoCarrinho().addActionListener(e -> TrocarParaPainel("Pagina de Carrinho"));
 
-        paginaAdm.getBotaoVoltar().addActionListener(e -> TrocarParaPainel("Pagina de Login"));
+        paginaAdm.getBotaoVoltar().addActionListener(
+                e -> {
+                    admin = null;
+                    TrocarParaPainel("Pagina de Login");
+
+                }
+
+        );
+
     }
 
     public void criaPainelProdutos() {
-        // Implementa o comportamento de adicionar ao carrinho para o usuário logado
+
         PaginaCardapioProdutos = new CardapioProdutos(produto -> {
             if (usuarioLogado == null) {
                 JOptionPane.showMessageDialog(painelPrincipal, "Usuário não está logado.");
@@ -161,15 +170,17 @@ public class Interfaces {
             JOptionPane.showMessageDialog(painelPrincipal, "Produto " + produto.getNome() + " adicionado ao carrinho de " + usuarioLogado.getNome());
         });
         painelCardapio = PaginaCardapioProdutos.getPanel();
+        painelCardapio.revalidate();
+        painelCardapio.repaint();
+
     }
 
     public void criaCarrinho() {
-        if (PaginaCarrinho == null) {
+        if (PaginaCarrinho == null && painelCarrinhoUsuario == null ) {
             PaginaCarrinho = new PaginaCarrinho();
             painelCarrinhoUsuario = new JPanel();
         }
 
-        // Atualiza painel de carrinho sem adicionar duplicatas
 
         painelCarrinhoUsuario = PaginaCarrinho.getPainelCarrinho(usuarioLogado);
         painelCarrinhoUsuario.revalidate();
@@ -180,6 +191,7 @@ public class Interfaces {
             usuarioLogado.limpaCarrinho();
             Dados.atualizaUsuario(usuarioLogado.getId(), usuarioLogado);
             usuarioLogado = (Cliente) Dados.obterUsuarioPorEmail(usuarioLogado.getEmail());
+            criaCarrinho();
             painelCarrinhoUsuario.revalidate();
             painelCarrinhoUsuario.repaint();
 

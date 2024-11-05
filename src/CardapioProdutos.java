@@ -48,6 +48,7 @@ public class CardapioProdutos {
 
         JScrollPane scrollPane = new JScrollPane(panelProdutos);
         panelPrincipal.add(scrollPane, BorderLayout.CENTER);
+
     }
 
     private void recuperaProdutos() {
@@ -62,9 +63,9 @@ public class CardapioProdutos {
         card.repaint();
     }
 
-    // Função revisada para personalizar a mensagem de adição ao carrinho e evitar recriar todos os cards
     private void carregarProdutos(ArrayList<Produto> produtos, Consumer<Produto> onComprarProduto) {
-        panelProdutos.removeAll(); // Limpa o painel de produtos
+
+        panelProdutos.removeAll();
 
         for (Produto produto : produtos) {
             JPanel card = new JPanel(new BorderLayout());
@@ -108,4 +109,6 @@ public class CardapioProdutos {
     public JButton getBotaoCarrinho() {
         return botaoCarrinho;
     }
+
+
 }

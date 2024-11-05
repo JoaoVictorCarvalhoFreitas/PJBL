@@ -107,17 +107,8 @@ public abstract class Dados {
 
         if (!produtoJaExiste) {
             produtos.add(produto);
-            try (FileOutputStream fileOut = new FileOutputStream(arquivoProdutos);
-                 ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
-                for (Produto prod : produtos) {
-                    out.writeObject(prod); // Grava todos os produtos no arquivo
-                }
-                System.out.println("Produto salvo com sucesso: " + produto.getNome());
-            } catch (IOException e) {
-                System.out.println("Erro ao salvar o Produto: " + e.getMessage());
-            }
-        } else {
-            System.out.println("Produto já existe: " + produto.getNome());
+            salvarProdutos(produtos);
+
         }
     }
 
@@ -136,7 +127,7 @@ public abstract class Dados {
 
     //ADM
     public static void salvarProduto(String nome, String descricao, double preco) {
-        int id = Dados.obterProdutos().size();
+        int id = Dados.obterProdutos().size()+1;
         salvarProduto(new Produto(id, nome, descricao, preco));
     }
 

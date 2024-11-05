@@ -4,6 +4,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class Admin extends Usuario {
+    private Dados bd;
 
     public Admin(int idUsuario,String nome,String email,String senha ){
         super(idUsuario,nome,email,senha);

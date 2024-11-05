@@ -23,12 +23,11 @@ public class Main {
 //        Admin.cadastrarCliente("Joao4","Joao@Joao4","1234");
 //        Admin.cadastrarCliente("Joao5","Joao@Joao5","12345");
 //
-//        Admin adm = new Admin(1,"AdmJoao","@AdmJoao","adm123");
+//        Admin adm = new Admin(1,"AdmJoao","adm","adm");
 //        Dados.cadastraNovoUsuarioCliente(adm);
 //        Dados.deletaUsuario("Joao@Joao");
 //        Dados.mostraCarrinhoUsuarios();
-
-////
+//
 //        PaginaCarrinho p = new PaginaCarrinho();
 //        JFrame frame = new JFrame();
 //        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
