@@ -14,6 +14,8 @@ public class PaginaCarrinho {
     private JButton Comprar;
     private JLabel LabelCarrrinho;
     private JPanel PainelTabelProdutos;
+    private JScrollBar scrollBar1;
+    private JLabel logo;
 
 
     public PaginaCarrinho() {

@@ -14,6 +14,7 @@ public class PaginaAdm {
     private JButton botaoAtualizaProduto;
     private JPanel PainelSecundario;
     private JLabel AtualizarProduto;
+    private JLabel logo;
 
 
     public JPanel getPainelAdm(){
