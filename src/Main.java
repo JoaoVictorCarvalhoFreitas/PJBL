@@ -3,6 +3,7 @@ import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
+<<<<<<< Updated upstream
         Interfaces interfaces = new Interfaces();
 //        Login login = new Login();
 //        Frame frame = new Frame();
@@ -39,5 +40,12 @@ public class Main {
 //        c.getCarrinho().limpaCarrinho();
 //        Dados.atualizaUsuario(c.getId(),c);
 
+=======
+        fds login = new fds();
+        JFrame frame = new JFrame();
+        frame.add(login.criarPainelLogin());
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setVisible(true);
+>>>>>>> Stashed changes
     }
 }

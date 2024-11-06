@@ -2,26 +2,23 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import javax.imageio.ImageIO;
-import java.io.IOException;
 
-public class Login {
-
-    private JTextField email;
-    private JButton BotaoEntrar;
-    private JPasswordField senha;
+public class fds {
     private JPanel PainelLoginUI;
-    private JButton Cadastrar;
-    private JButton Admin;
+    private JPanel Card;
+    private JPanel Informacoes;
+    private JLabel login_label;
+    private JPanel dados;
+    private JTextField email;
+    private JPasswordField senha;
     private JPanel PainelBotoes;
-    private JButton cadastrarSeButton;
-    private JPanel inputs;
-    private JPanel Main;
-    private ImagePanel imagem;
+    private JButton BotaoEntrar;
+    private JButton Cadastrar;
+    private JPanel imagem;
+    private ImagePanel fundo
+            ;
 
-    Login() {
+    fds() {
         imagem = new ImagePanel("src/fundo.png");
         // Configura PainelLoginUI para usar OverlayLayout
         PainelLoginUI.setLayout(new OverlayLayout(PainelLoginUI));
@@ -33,10 +30,10 @@ public class Login {
         PainelLoginUI.setComponentZOrder(imagem, PainelLoginUI.getComponentCount() - 1);
 
         imagem.setLayout(new BorderLayout());
-        imagem.add(Main, BorderLayout.CENTER);
+        imagem.add(Card, BorderLayout.CENTER);
 
         BotaoEntrar.setBorder(null);
-        cadastrarSeButton.setBorder(null);
+        Cadastrar.setBorder(null);
         email.setBorder(null);
         senha.setBorder(null);
 
@@ -94,12 +91,7 @@ public class Login {
             }
 
         });
-
-
     }
-
-
-
     public JPanel criarPainelLogin(){
         return this.PainelLoginUI;
     }
@@ -111,9 +103,6 @@ public class Login {
     public JButton getBotaoCadastrar() {
         return this.Cadastrar;
     }
-    public JButton getBotaoAdmin() {
-        return this.Admin;
-    }
     public JTextField getEmail() {
         return this.email;
     }
@@ -121,74 +110,4 @@ public class Login {
         return this.senha;
     }
 
-
-
-//
-//    public void MostrarTelaLogin() {
-//        // Exibe ou oculta a janela com base em sua visibilidade atual
-//        SwingUtilities.invokeLater(() -> frame.setVisible(!frame.isVisible()));
-//
-//    }
-//
-//    public void criaBotaoLogar(){
-//        BotaoEntrar.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//
-//            }
-//        });
-//    }
-//
-//    public void criaBotaoCadastrar(){
-//        Cadastrar.addActionListener(new ActionListener() {
-//
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                MostrarTelaCadastro();
-//            }
-//        });
-//    }
-//
-//    public void MostrarTelaCardapio(){
-//        MostrarTelaLogin();
-//        Cardapio cardapio = new Cardapio();
-//        cardapio.MostrarTelaCardapio();
-//    }
-//
-//    public void MostrarTelaCadastro(){
-//        MostrarTelaLogin();
-//        cadastroPage = new CadastroPage();
-//        cadastroPage.MostrarTelaCadastro();
-//        cadastroPage.Login.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                cadastroPage.MostrarTelaLogin(frame);
-//            }
-//        });
-//    }
-//
-//
 }
-
-class ImagePanel extends JPanel {
-    private BufferedImage image;
-
-    public ImagePanel(String imagePath) {
-        try {
-            // Carrega a imagem a partir do caminho do arquivo
-            image = ImageIO.read(new File(imagePath));
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Erro ao carregar a imagem.");
-        }
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        if (image != null) {
-            // Desenha a imagem no painel centralizando-a
-            g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
-        }
-    }
-}
-
