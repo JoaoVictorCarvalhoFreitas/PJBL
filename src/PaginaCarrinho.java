@@ -19,7 +19,8 @@ public class PaginaCarrinho {
 
 
     public PaginaCarrinho() {
-
+        Voltar.setBorder(null);
+        Comprar.setBorder(null);
     }
 
     public JButton getBotaoVoltar(){

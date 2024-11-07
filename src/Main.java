@@ -39,9 +39,10 @@ public class Main {
 //        c.getCarrinho().limpaCarrinho();
 //        Dados.atualizaUsuario(c.getId(),c);
 
-        Login login = new Login();
+//        Login login = new Login();
+        CadastroPage cadastro = new CadastroPage();
         JFrame frame = new JFrame();
-        frame.add(login.criarPainelLogin());
+        frame.add(cadastro.criarPainelCadastro());
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
     }
