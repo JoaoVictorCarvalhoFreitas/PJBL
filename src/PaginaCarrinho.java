@@ -8,6 +8,7 @@ public class PaginaCarrinho {
     private JButton Comprar;
     private  JLabel LabelCarrrinho;
     private JPanel PainelTabelProdutos;
+    private JScrollPane scrollProduto;
 
 
     public PaginaCarrinho() {}
