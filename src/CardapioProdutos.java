@@ -13,11 +13,10 @@ public class CardapioProdutos {
     private JButton botaoCarrinho;
     private JPanel topPanel;
 
-    public CardapioProdutos(Consumer<Produto> onComprarProduto) {
-        carregaPainelPrincipal(onComprarProduto);
+    public CardapioProdutos() {
     }
 
-    private void carregaPainelPrincipal(Consumer<Produto> onComprarProduto) {
+    public void carregaPainelPrincipal(Consumer<Produto> onComprarProduto) {
         panelPrincipal = new JPanel(new BorderLayout());
 
         // Configuração do botão "Voltar" no painel superior

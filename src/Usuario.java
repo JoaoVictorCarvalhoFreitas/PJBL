@@ -17,4 +17,14 @@ abstract class Usuario implements Serializable  {
     public int getId(){return idUsuario;}
     public String getEmail(){return email;}
     public String getSenha(){return senha;}
+    public static Usuario logarUsuario (String email, String senha) throws UsuarioInvalido{
+        Usuario u = Dados.obterUsuarioPorEmail(email);
+        if(u == null) throw new UsuarioInvalido("Nao foi possivel encontrar o usuario pelo email");
+        if(!(u.getEmail().equals(email)) || !(u.senha.equals(senha))){
+            throw new UsuarioInvalido("nAO FOI POSSIVEL LOGAR");
+        }
+        return u;
+    }
+
+
 }

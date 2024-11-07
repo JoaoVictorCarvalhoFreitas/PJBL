@@ -2,9 +2,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 public abstract class Dados {
-    static String arquivoUsuario = "Usuarios.ser";
-    static String arquivoProdutos = "produtos.ser";
-    static String arquivoCarrinho = "carrinho.ser";
+    private static final String arquivoUsuario = "Usuarios.ser";
 
 
 
@@ -94,45 +92,15 @@ public abstract class Dados {
     //PRODUTOS
 
     //ADM
-    public static void salvarProduto(Produto produto) {
-        ArrayList<Produto> produtos = obterProdutos();
-
-        boolean produtoJaExiste = false;
-        for (Produto prod : produtos) {
-            if (prod.getNome().equals(produto.getNome())) {
-                produtoJaExiste = true;
-                break;
-            }
-        }
-
-        if (!produtoJaExiste) {
-            produtos.add(produto);
-            salvarProdutos(produtos);
-
-        }
-    }
 
     //ADM
-    private static void salvarProdutos(ArrayList<Produto> produtos) {
-        try (FileOutputStream fileOut = new FileOutputStream("produtos.ser");
-             ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
-            for (Produto prod : produtos) {
-                out.writeObject(prod);
-            }
-            System.out.println("Lista de produtos salva com sucesso.");
-        } catch (IOException e) {
-            System.out.println("Erro ao salvar produtos: " + e.getMessage());
-        }
-    }
+
 
     //ADM
-    public static void salvarProduto(String nome, String descricao, double preco) {
-        int id = Dados.obterProdutos().size()+1;
-        salvarProduto(new Produto(id, nome, descricao, preco));
-    }
 
     public static ArrayList<Produto> obterProdutos() {
         ArrayList<Produto> produtos = new ArrayList<>();
+        String arquivoProdutos = "produtos.ser";
         try (FileInputStream fileIn = new FileInputStream(arquivoProdutos);
              ObjectInputStream in = new ObjectInputStream(fileIn)) {
             while (true) {
@@ -150,7 +118,6 @@ public abstract class Dados {
         return produtos;
     }
 
-
     public static Produto obterProdutoPorId(int id) {
         ArrayList<Produto> produtos = obterProdutos();
         for (Produto prod : produtos) {
@@ -162,16 +129,7 @@ public abstract class Dados {
     }
 
     //ADM
-    public static void atualizarProduto(String nome, Produto prodAtualizado) {
-        ArrayList<Produto> produtos = obterProdutos();
-        for (int i = 0; i < produtos.size(); i++) {
-            if (produtos.get(i).getNome().equals(nome)) {
-                produtos.set(i, prodAtualizado);
-                break;
-            }
-        }
-        salvarProdutos(produtos);
-    }
+
 
 
     public static Produto obterProdutoPorNome(String nome) {
@@ -185,128 +143,33 @@ public abstract class Dados {
     }
 
     //ADM
-    public static void atualizarProduto(String nome, String descricao, double preco) {
-        ArrayList<Produto> produtos = obterProdutos();
-        boolean produtoEncontrado = false;
 
-        for (int i = 0; i < produtos.size(); i++) {
-            if (produtos.get(i).getNome().equals(nome)) {
-
-                produtos.set(i, new Produto(produtos.size(), nome, descricao, preco));
-                produtoEncontrado = true;
-                break;
-            }
-        }
-
-        if (produtoEncontrado) {
-            salvarProdutos(produtos); // Sobrescreve o arquivo com a lista atualizada
-            System.out.println("Produto atualizado com sucesso: " + nome);
-        } else {
-            System.out.println("Produto não encontrado: " + nome);
-        }
-    }
 
     //ADM
-    public static void atualizaPrecoProduto(String nome, double preco) {
-        ArrayList<Produto> produtos = obterProdutos();
-        for (int i = 0; i < produtos.size(); i++) {
-            if (produtos.get(i).getNome().equals(nome)) {
-                produtos.get(i).setPreco(preco);
-                break;
-            }
-        }
-        salvarProdutos(produtos);
-    }
+
 
     //ADM
-    public static void deletarProduto(int id) {
-        ArrayList<Produto> produtos = obterProdutos();
-        for (int i = 0; i < produtos.size(); i++) {
-            if (produtos.get(i).getId() == id) {
-                produtos.remove(i);
-            }
-        }
-        salvarProdutos(produtos);
-    }
+
 
 
     //    CARRINHO
-    public static Carrinho getCarrinho(int id) {
-        Cliente c = Dados.obterClientePorId(id);
-        return c.getCarrinho();
+
+    public static void DeletarItemCarrinho(int idCliente, int idProduto) throws UsuarioInvalido{
+        Cliente c;
+        c = Dados.obterClientePorId(idCliente);
+        try {
+            c.getCarrinho().deletaItemCarrinho(Dados.obterProdutoPorId(idProduto));
+            atualizaUsuario(idCliente, c);
+        }catch (UsuarioInvalido ex){
+            throw new UsuarioInvalido("nao foi possivel deletar o item do carrinho");
+        }
     }
 
-    public static void DeletarItemCarrinho(int idCliente, int idProduto) {
-        Cliente c = Dados.obterClientePorId(idCliente);
-        c.getCarrinho().deletaItemCarrinho(Dados.obterProdutoPorId(idProduto));
-        atualizaUsuario(idCliente, c);
-
-    }
-
-
-
-    //Usuarios
-
-
-//    public static ArrayList<Cliente> obterUsuariosCliente() {
-//        ArrayList<Cliente> clientes = new ArrayList<>();
-//
-//        try (FileInputStream fileIn = new FileInputStream(arquivoUsuario);
-//             ObjectInputStream in = new ObjectInputStream(fileIn)) {
-//
-//            while (true) {
-//                try {
-//                    if(in.readObject() instanceof Cliente u){
-//                        clientes.add(u);
-//                    }
-//
-//
-//                } catch (EOFException e) {
-//                    break;
-//                }
-//            }
-//
-//        } catch (IOException | ClassNotFoundException e) {
-//            System.out.println("Erro ao carregar clientes: " + e.getMessage());
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//        return clientes;
-//
-//    }
-//
-//    public static ArrayList<Admin> obterUsuariosAdmins() {
-//        ArrayList<Admin> admins = new ArrayList<>();
-//
-//        try (FileInputStream fileIn = new FileInputStream(arquivoUsuario);
-//             ObjectInputStream in = new ObjectInputStream(fileIn)) {
-//
-//            while (true) {
-//                try {
-//                    if(in.readObject() instanceof Admin u){
-//                        admins.add(u);
-//                    }
-//
-//
-//                } catch (EOFException e) {
-//                    break;
-//                }
-//            }
-//
-//        } catch (IOException | ClassNotFoundException e) {
-//            System.out.println("Erro ao carregar clientes: " + e.getMessage());
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//        return admins;
-//
-//    }
-
-    public static ArrayList<Usuario> obterUsuarios() {
+    //UsuarioCliente
+    public static ArrayList<Usuario> obterUsuarios(){
         ArrayList<Usuario> usuarios = new ArrayList<>();
         try (FileInputStream fileIn = new FileInputStream(arquivoUsuario);
         ObjectInputStream in = new ObjectInputStream(fileIn)) {
-
             while (true) {
                 try {
                     usuarios.add((Usuario)in.readObject());
@@ -314,15 +177,12 @@ public abstract class Dados {
                     break;
                 }
             }
-
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Erro ao carregar clientes: " + e.getMessage());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
         return usuarios;
-
     }
 
     public static Usuario obterUsuarioPorEmail(String email) {
@@ -336,17 +196,18 @@ public abstract class Dados {
     }
 
     public static Cliente obterClientePorId(int id) {
-         ArrayList<Usuario> usuarios = obterUsuarios();
-         for (Usuario c : usuarios) {
-             if(c instanceof Cliente && c.getId() == id){
-                 return (Cliente)c;
-             }
-             break;
-         }
-         return null;
+        ArrayList<Usuario> usuarios;
+        usuarios = obterUsuarios();
+        for (Usuario c : usuarios) {
+            if(c.getId() == id){
+                return (Cliente)c;
+            }
+            break;
+        }
+        return null;
     }
 
-    public static void cadastraNovoUsuarioCliente(Usuario usuario){
+    public static void cadastraNovoUsuarioCliente(Usuario usuario) {
 
         ArrayList<Usuario> usuarios = obterUsuarios();
         int id = usuarios.size()+1;
@@ -378,13 +239,11 @@ public abstract class Dados {
     }
 
     public static void cadastraCliente(String nome,String email,String senha){
-
         int id = obterUsuarios().size()+1;
         cadastraNovoUsuarioCliente(new Cliente(id,nome,email,senha));
-
     }
 
-    public static void salvaUsuarioCliente(int id,Cliente cliente){
+    public static void atualizarUsuarioCliente(int id, Cliente cliente) throws UsuarioInvalido {
         ArrayList<Usuario> clientes = obterUsuarios();
         for (int i = 0; i < clientes.size(); i++) {
             if (clientes.get(i).getId() == id) {
@@ -393,25 +252,26 @@ public abstract class Dados {
             }
 
         }
+        try {
         salvaListaUsuarios(clientes);
-    }
-
-    public static void salvaListaUsuarios(ArrayList<Usuario> clientes){
-        ArrayList<Usuario> usuarios = obterUsuarios();
-
-        try (FileOutputStream fileOut = new FileOutputStream(arquivoUsuario);
-             ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
-            for (Usuario c : clientes) {
-                out.writeObject(c);
-
-            }
-            System.out.println("usuarios atualizados com sucesso.");
-        } catch (IOException e) {
-            System.out.println("Erro ao salvar usuarios: " + e.getMessage());
+        }catch (UsuarioInvalido e){
+            throw new UsuarioInvalido("Nao foi possivel atualizar o cliente");
         }
     }
 
-    public static void atualizaUsuario(int id, Usuario u){
+    public static void salvaListaUsuarios(ArrayList<Usuario> us) throws UsuarioInvalido{
+        try (FileOutputStream fileOut = new FileOutputStream(arquivoUsuario);
+             ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
+            for (Usuario c : us) {
+                out.writeObject(c);
+            }
+            System.out.println("usuarios atualizados com sucesso.");
+        } catch (IOException e) {
+            System.out.println("Erro no metodo salvaListaUsuarios, ao salvar usuarios: " + e.getMessage());
+        }
+    }
+
+    public static void atualizaUsuario(int id, Usuario u) throws UsuarioInvalido {
             ArrayList<Usuario> usuarios = obterUsuarios();
             for (int i = 0; i < usuarios.size(); i++) {
                 if (usuarios.get(i).getId() == id) {
@@ -419,8 +279,25 @@ public abstract class Dados {
                     System.out.println("Usuario: " + u.getNome() + " atualizado com sucesso.");
                 }
             }
-
+            try {
             salvaListaUsuarios(usuarios);
+            }catch (UsuarioInvalido ex ){
+                throw new UsuarioInvalido("Erro no metodo atualizaUsuario, ao atualizar o cliente");
+            }
+    }
+
+    public static void deletaUsuario(String email) throws UsuarioInvalido{
+        ArrayList<Usuario> usuarios = obterUsuarios();
+        for (int i = 0; i < usuarios.size(); i++) {
+            if (usuarios.get(i).getEmail().equals(email)) {
+                usuarios.remove(i);
+            }
+        }
+        try {
+            salvaListaUsuarios(usuarios);
+        }catch (UsuarioInvalido ex){
+            throw new UsuarioInvalido("Erro ao deletar o cliente");
+        }
     }
 
     public static void mostraCarrinhoUsuarios(){
@@ -431,20 +308,6 @@ public abstract class Dados {
                 }
             }
         }
-
-
-        public static void deletaUsuario(String email){
-            ArrayList<Usuario> usuarios = obterUsuarios();
-            for (int i = 0; i < usuarios.size(); i++) {
-                if (usuarios.get(i).getEmail().equals(email)) {
-                    usuarios.remove(i);
-                }
-            }
-            salvaListaUsuarios(usuarios);
-        }
-
-
-
 
 }
 

@@ -11,6 +11,7 @@ public class Cliente extends Usuario implements Serializable {
     public Carrinho getCarrinho(){
         return carrinho;
     }
+
     public void adicionaProdutoCarrinho(Produto prod){
         carrinho.adicionarProduto(prod);
     }
