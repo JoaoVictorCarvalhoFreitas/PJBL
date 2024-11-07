@@ -10,22 +10,23 @@ public class Main {
 //        frame.add(login.criarPainelLogin());
 //        frame.setVisible(true);
 
-//        Admin.cadastrarProduto("cafe preto","cafe escravo", 1.99);
-//        Admin.cadastrarProduto("cafe branco","cafe escravocrata", 0.99);
-//        Admin.cadastrarProduto("cafe amarelo","cafe de anime", 10.99);
-//        Admin.cadastrarProduto("cafe pardo","cafe cafe", 2.99);
-//        Admin.cadastrarProduto("cafe preto1","cafe", 1.99);
-//        Admin.cadastrarProduto("cafe preto11","cafe", 1.99);
+        Admin Admin = new Admin(1,"AdmJoao","adm","adm");
+        Admin.salvarProduto("cafe preto","cafe escravo", 1.99);
+        Admin.salvarProduto("cafe branco","cafe escravocrata", 0.99);
+        Admin.salvarProduto("cafe amarelo","cafe de anime", 10.99);
+        Admin.salvarProduto("cafe pardo","cafe cafe", 2.99);
+        Admin.salvarProduto("cafe preto1","cafe", 1.99);
+        Admin.salvarProduto("cafe preto11","cafe", 1.99);
 
-//        Dados.cadastraCliente("Joao","Joao@Joao","0");
-//        Dados.cadastraCliente("Joao1","Joao@Joao1","1");
-//        Dados.cadastraCliente("Joao2","Joao@Joao2","12");
-//        Dados.cadastraCliente("Joao3","Joao@Joao3","123");
-//        Dados.cadastraCliente("Joao4","Joao@Joao4","1234");
-//        Dados.cadastraCliente("Joao5","Joao@Joao5","12345");
-////
-//        Admin adm = new Admin(1,"AdmJoao","adm","adm");
-//        Dados.cadastraNovoUsuarioCliente(adm);
+        Dados.cadastraCliente("Joao","Joao@Joao","0");
+        Dados.cadastraCliente("Joao1","Joao@Joao1","1");
+        Dados.cadastraCliente("Joao2","Joao@Joao2","12");
+        Dados.cadastraCliente("Joao3","Joao@Joao3","123");
+        Dados.cadastraCliente("Joao4","Joao@Joao4","1234");
+        Dados.cadastraCliente("Joao5","Joao@Joao5","12345");
+//
+        
+        Dados.cadastraNovoUsuarioCliente(Admin);
 //        Dados.deletaUsuario("Joao@Joao");
 //        Dados.mostraCarrinhoUsuarios();
 //
