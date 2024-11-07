@@ -68,7 +68,7 @@
                         </constraints>
                         <properties>
                           <background color="-1977415"/>
-                          <foreground color="-1977415"/>
+                          <foreground color="-2104859"/>
                         </properties>
                       </component>
                       <component id="f9996" class="javax.swing.JTextField" binding="DescricaoProdutoCadastro">
@@ -79,7 +79,7 @@
                         </constraints>
                         <properties>
                           <background color="-1977415"/>
-                          <foreground color="-1977415"/>
+                          <foreground color="-2104859"/>
                         </properties>
                       </component>
                       <component id="81812" class="javax.swing.JTextField" binding="PrecoProdutoCadastro">
@@ -198,6 +198,7 @@
                         </constraints>
                         <properties>
                           <background color="-1977415"/>
+                          <foreground color="-2104859"/>
                         </properties>
                       </component>
                       <component id="16214" class="javax.swing.JTextField" binding="DescricaoProdutoAtualiza">
@@ -208,6 +209,7 @@
                         </constraints>
                         <properties>
                           <background color="-1977415"/>
+                          <foreground color="-2104859"/>
                           <text value=""/>
                         </properties>
                       </component>
@@ -219,6 +221,7 @@
                         </constraints>
                         <properties>
                           <background color="-1977415"/>
+                          <foreground color="-2104859"/>
                         </properties>
                       </component>
                       <grid id="a71ea" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
