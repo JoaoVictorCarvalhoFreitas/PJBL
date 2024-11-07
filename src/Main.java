@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        Interfaces interfaces = new Interfaces();
+//        Interfaces interfaces = new Interfaces();
 //        Login login = new Login();
 //        Frame frame = new Frame();
 //        frame.add(login.criarPainelLogin());
 //        frame.setVisible(true);
 
 //        Admin.cadastrarProduto("cafe preto","cafe escravo", 1.99);
-//        Admin.cadastrarProduto("cafe branco","cafe racista", 0.99);
+//        Admin.cadastrarProduto("cafe branco","cafe escravocrata", 0.99);
 //        Admin.cadastrarProduto("cafe amarelo","cafe de anime", 10.99);
 //        Admin.cadastrarProduto("cafe pardo","cafe cafe", 2.99);
 //        Admin.cadastrarProduto("cafe preto1","cafe", 1.99);
@@ -38,17 +38,5 @@ public class Main {
 //        Cliente c = (Cliente)Dados.obterUsuarioPorEmail("Joao@Joao");
 //        c.getCarrinho().limpaCarrinho();
 //        Dados.atualizaUsuario(c.getId(),c);
-
-//        ArrayList<String> lista = new ArrayList<>();
-//        lista.add("a");
-//        lista.add("b");
-//        lista.add("c");
-//        lista.add("d");
-//        lista.add("ce");
-//        lista.add("f");
-//        Dados.trocaNum(lista,"c");
-//
-//        System.out.println(lista);
-
     }
 }

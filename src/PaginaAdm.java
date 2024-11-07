@@ -14,7 +14,19 @@ public class PaginaAdm {
     private JButton botaoAtualizaProduto;
     private JPanel PainelSecundario;
     private JLabel AtualizarProduto;
+    private JLabel logo;
 
+    PaginaAdm() {
+        botaoVoltar.setBorder(null);
+        botaoCadastraProduto.setBorder(null);
+        botaoAtualizaProduto.setBorder(null);
+        NomeProdutoCadastro.setBorder(null);
+        DescricaoProdutoCadastro.setBorder(null);
+        PrecoProdutoCadastro.setBorder(null);
+        NomeProdutoAtualiza.setBorder(null);
+        DescricaoProdutoAtualiza.setBorder(null);
+        PrecoProdutoAtualiza.setBorder(null);
+    }
 
     public JPanel getPainelAdm(){
         return PainelAdm;

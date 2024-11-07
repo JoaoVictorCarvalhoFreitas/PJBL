@@ -14,6 +14,14 @@ public class CadastroPage {
     private JFrame frame;
     private JLabel logo;
 
+    CadastroPage() {
+        Nome.setBorder(null);
+        Email.setBorder(null);
+        Senha1.setBorder(null);
+        Senha2.setBorder(null);
+        Login.setBorder(null);
+        Cadastrar.setBorder(null);
+    }
 
 
     public JPanel criarPainelCadastro(){
