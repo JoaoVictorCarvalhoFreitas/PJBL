@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-//        Interfaces interfaces = new Interfaces();
+       Interfaces interfaces = new Interfaces();
 //        Login login = new Login();
 //        Frame frame = new Frame();
 //        frame.add(login.criarPainelLogin());
