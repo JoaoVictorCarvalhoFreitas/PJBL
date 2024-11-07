@@ -1,25 +1,26 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import javax.imageio.ImageIO;
 import java.io.IOException;
 
 public class Login {
-
     private JTextField email;
     private JButton BotaoEntrar;
     private JPasswordField senha;
     private JPanel PainelLoginUI;
     private JButton Cadastrar;
-    private JButton Admin;
     private JPanel PainelBotoes;
-    private JButton cadastrarSeButton;
-    private JPanel inputs;
-    private JPanel Main;
-    private ImagePanel imagem;
+    private JPanel Card;
+    private JPanel Informacoes;
+    private JLabel login_label;
+    private JPanel dados;
+    private JPanel imagem;
+    private ImagePanel fundo
+            ;
 
     Login() {
         imagem = new ImagePanel("src/fundo.png");
@@ -32,13 +33,17 @@ public class Login {
         // Configura a ordem de renderização para que a imagem fique no fundo
         PainelLoginUI.setComponentZOrder(imagem, PainelLoginUI.getComponentCount() - 1);
 
-        imagem.setLayout(new BorderLayout());
-        imagem.add(Main, BorderLayout.CENTER);
+        Card.setPreferredSize(new Dimension(650, 450));
+        Card.setMaximumSize(new Dimension(650, 450));
+        Informacoes.setPreferredSize(new Dimension(250, 450));
+        Informacoes.setMaximumSize(new Dimension(250, 450));
+
 
         BotaoEntrar.setBorder(null);
-        cadastrarSeButton.setBorder(null);
+        Cadastrar.setBorder(null);
         email.setBorder(null);
         senha.setBorder(null);
+
 
         String placeholdersenha = "Digite sua senha";
 
@@ -94,12 +99,7 @@ public class Login {
             }
 
         });
-
-
     }
-
-
-
     public JPanel criarPainelLogin(){
         return this.PainelLoginUI;
     }
@@ -111,9 +111,6 @@ public class Login {
     public JButton getBotaoCadastrar() {
         return this.Cadastrar;
     }
-    public JButton getBotaoAdmin() {
-        return this.Admin;
-    }
     public JTextField getEmail() {
         return this.email;
     }
@@ -121,52 +118,6 @@ public class Login {
         return this.senha;
     }
 
-
-
-//
-//    public void MostrarTelaLogin() {
-//        // Exibe ou oculta a janela com base em sua visibilidade atual
-//        SwingUtilities.invokeLater(() -> frame.setVisible(!frame.isVisible()));
-//
-//    }
-//
-//    public void criaBotaoLogar(){
-//        BotaoEntrar.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//
-//            }
-//        });
-//    }
-//
-//    public void criaBotaoCadastrar(){
-//        Cadastrar.addActionListener(new ActionListener() {
-//
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                MostrarTelaCadastro();
-//            }
-//        });
-//    }
-//
-//    public void MostrarTelaCardapio(){
-//        MostrarTelaLogin();
-//        Cardapio cardapio = new Cardapio();
-//        cardapio.MostrarTelaCardapio();
-//    }
-//
-//    public void MostrarTelaCadastro(){
-//        MostrarTelaLogin();
-//        cadastroPage = new CadastroPage();
-//        cadastroPage.MostrarTelaCadastro();
-//        cadastroPage.Login.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                cadastroPage.MostrarTelaLogin(frame);
-//            }
-//        });
-//    }
-//
-//
 }
 
 class ImagePanel extends JPanel {
@@ -191,4 +142,3 @@ class ImagePanel extends JPanel {
         }
     }
 }
-

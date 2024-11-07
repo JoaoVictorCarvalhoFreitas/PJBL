@@ -3,15 +3,14 @@ import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
-<<<<<<< Updated upstream
-        Interfaces interfaces = new Interfaces();
+//        Interfaces interfaces = new Interfaces();
 //        Login login = new Login();
 //        Frame frame = new Frame();
 //        frame.add(login.criarPainelLogin());
 //        frame.setVisible(true);
 
 //        Admin.cadastrarProduto("cafe preto","cafe escravo", 1.99);
-//        Admin.cadastrarProduto("cafe branco","cafe racista", 0.99);
+//        Admin.cadastrarProduto("cafe branco","cafe escravocrata", 0.99);
 //        Admin.cadastrarProduto("cafe amarelo","cafe de anime", 10.99);
 //        Admin.cadastrarProduto("cafe pardo","cafe cafe", 2.99);
 //        Admin.cadastrarProduto("cafe preto1","cafe", 1.99);
@@ -40,12 +39,10 @@ public class Main {
 //        c.getCarrinho().limpaCarrinho();
 //        Dados.atualizaUsuario(c.getId(),c);
 
-=======
-        fds login = new fds();
+        Login login = new Login();
         JFrame frame = new JFrame();
         frame.add(login.criarPainelLogin());
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
->>>>>>> Stashed changes
     }
 }
