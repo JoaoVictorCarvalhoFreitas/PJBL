@@ -53,7 +53,7 @@ public class Admin extends Usuario {
         salvarProdutos(produtos);
     }
 
-    private void salvarProdutos(ArrayList<Produto> produtos) {
+    public void salvarProdutos(ArrayList<Produto> produtos) {
         try (FileOutputStream fileOut = new FileOutputStream("produtos.ser");
              ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
             for (Produto prod : produtos) {
