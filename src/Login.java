@@ -19,11 +19,12 @@ public class Login {
     private JLabel login_label;
     private JPanel dados;
     private JPanel imagem;
-    private ImagePanel fundo
-            ;
+    private ImagePanel fundo;
+
 
     Login() {
         imagem = new ImagePanel("src/fundo.png");
+
         // Configura PainelLoginUI para usar OverlayLayout
         PainelLoginUI.setLayout(new OverlayLayout(PainelLoginUI));
 
@@ -100,6 +101,7 @@ public class Login {
 
         });
     }
+
     public JPanel criarPainelLogin(){
         return this.PainelLoginUI;
     }
@@ -111,34 +113,15 @@ public class Login {
     public JButton getBotaoCadastrar() {
         return this.Cadastrar;
     }
+
     public JTextField getEmail() {
         return this.email;
     }
+
     public JPasswordField getSenha() {
         return this.senha;
     }
 
 }
 
-class ImagePanel extends JPanel {
-    private BufferedImage image;
 
-    public ImagePanel(String imagePath) {
-        try {
-            // Carrega a imagem a partir do caminho do arquivo
-            image = ImageIO.read(new File(imagePath));
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Erro ao carregar a imagem.");
-        }
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        if (image != null) {
-            // Desenha a imagem no painel centralizando-a
-            g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
-        }
-    }
-}

@@ -92,13 +92,15 @@ public class Interfaces {
         paginaCadastro.getBotaoCadastrar().addActionListener(_ -> {
             String nome = paginaCadastro.getNome().getText();
             String email = paginaCadastro.getEmail().getText();
-            String senha1 = Arrays.toString(paginaCadastro.getSenha().getPassword());
-            String senha2 = Arrays.toString(paginaCadastro.getSenha2().getPassword());
+            String senha1 = new String(paginaCadastro.getSenha().getPassword());
+            String senha2 = new String(paginaCadastro.getSenha2().getPassword());
 
             if (!senha1.equals(senha2)) {
                 JOptionPane.showMessageDialog(painelCadastro, "Senhas Diferentes");
+                return;
             } else if (nome.isBlank() || email.isBlank() || senha2.isBlank()) {
-                JOptionPane.showMessageDialog(painelCadastro, "Email, nome ou senha inválidos");
+                JOptionPane.showMessageDialog(painelCadastro, "Email, nome ou senha devem ser todos preenchidos");
+                return;
             } else {
                 try {
                     Dados.cadastraCliente(nome, email, senha1);

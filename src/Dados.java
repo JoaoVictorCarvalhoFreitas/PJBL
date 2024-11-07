@@ -208,13 +208,11 @@ public abstract class Dados {
     }
 
     public static void cadastraNovoUsuarioCliente(Usuario usuario) {
-
         ArrayList<Usuario> usuarios = obterUsuarios();
-        int id = usuarios.size()+1;
 
         boolean clienteExiste = false;
         for (Usuario u: usuarios) {
-            if (u.getNome().equals(usuario.getNome())) {
+            if (u.getEmail().equals(usuario.getEmail())) {
                 clienteExiste = true;
                 break;
             }
@@ -227,13 +225,16 @@ public abstract class Dados {
                 for (Usuario u1 : usuarios) {
                     out.writeObject(u1);
                 }
+
                 System.out.println("Cliente salvo com sucesso: " + usuario.getNome());
+
             } catch (IOException e) {
                 System.out.println("Erro ao salvar o cliente: " + e.getMessage());
             }
         } else {
             System.out.println("cliente já existe: " + usuario.getNome());
         }
+
 
 
     }
