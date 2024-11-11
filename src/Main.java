@@ -17,7 +17,8 @@ public class Main {
         Admin.salvarProduto("cafe marrom","cafe com leite", 2.99);
         Admin.salvarProduto("cafe preto1","cafe", 1.99);
         Admin.salvarProduto("cafe preto11","cafe", 1.99);
-//
+        Admin.salvarProduto("Javacafe","cafe depressivo", 999.9);
+        //
         Dados.cadastraCliente("Joao","Joao@Joao","0");
         Dados.cadastraCliente("Joao1","Joao@Joao1","1");
         Dados.cadastraCliente("Joao2","Joao@Joao2","12");
@@ -25,7 +26,10 @@ public class Main {
         Dados.cadastraCliente("Joao4","Joao@Joao4","1234");
         Dados.cadastraCliente("Joao5","Joao@Joao5","12345");
         Dados.cadastraCliente("Joao6","Joao@Joao6","123456");
-//
+
+        Dados.cadastraNovoUsuarioCliente(Admin);
+
+
 
 //        Dados.cadastraNovoUsuarioCliente(Admin);
 ////        Dados.deletaUsuario("Joao@Joao");
