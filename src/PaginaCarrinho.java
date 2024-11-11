@@ -63,10 +63,18 @@ public class PaginaCarrinho {
 
         model.addTableModelListener(e -> {
             if (e.getColumn() == 1) {
-                int row = e.getFirstRow();
-                int quantidade = (int) TabelaProdutos.getValueAt(row, 1);
-                double preco = produtos.get(row).getPreco() * quantidade;
-                TabelaProdutos.setValueAt(String.format("%.2f", preco), row, 2);
+                int numLinha = e.getFirstRow();
+                int quantidade = (int) TabelaProdutos.getValueAt(numLinha, 1);
+                double preco = produtos.get(numLinha).getPreco() * quantidade;
+
+                TabelaProdutos.setValueAt(String.format("%.2f", preco), numLinha, 2);
+                try {
+                car.setValorTotal(preco);
+                Dados.atualizaUsuario(cliente.getId(),cliente);
+                }catch (Exception ex){
+                    JOptionPane.showMessageDialog(PainelCarrinho, "nao foi possivel adicionar o produto ao carrinho");
+                }
+
             }
         });
         return TabelaProdutos;

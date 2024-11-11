@@ -5,87 +5,6 @@ public abstract class Dados {
     private static final String arquivoUsuario = "Usuarios.ser";
 
 
-
-    public static Usuario logar(String email, String senha) {
-        Usuario usuario = obterUsuarioPorEmail(email);
-
-        if (usuario == null) {
-            return null;
-        }
-        if (usuario.getSenha().equals(senha)) {
-            return usuario;
-        }
-        return null;
-    }
-
-    //ADMS
-//    public static void salvarAdm(String nome, String email, String senha) {
-//        Admin adm = new Admin(obterAdms().size() + 1, nome, email, senha);
-//        try (FileOutputStream fileOut = new FileOutputStream(arquivoAdmin, true);
-//             ObjectOutputStream out = new ObjectOutputStream(fileOut) {
-//                 protected void writeStreamHeader() throws IOException {
-//                     if (fileOut.getChannel().position() == 0) {
-//                         super.writeStreamHeader();
-//                     } else {
-//                         reset();
-//                     }
-//                 }
-//             }) {
-//            out.writeObject(adm);
-//            System.out.println("adm salvo com sucesso: " + adm.getNome());
-//        } catch (IOException e) {
-//            System.out.println("Erro ao salvar o adm: " + e.getMessage());
-//        }
-//    }
-//
-//    private static ArrayList<Admin> obterAdms() {
-//        ArrayList<Admin> adms = new ArrayList<>();
-//        try (FileInputStream fileIn = new FileInputStream(arquivoAdmin);
-//             ObjectInputStream in = new ObjectInputStream(fileIn)) {
-//            while (true) {
-//                try {
-//                    Admin adm = (Admin) in.readObject();
-//                    adms.add(adm);
-//                } catch (EOFException e) {
-//                    break;
-//                }
-//            }
-//        } catch (IOException | ClassNotFoundException e) {
-//            System.out.println("Erro ao carregar adms: " + e.getMessage());
-//        }
-//        return adms;
-//    }
-//
-//    private static boolean logarAdm(String email, String senha) {
-//        Admin adm = obterAdminPorEmail(email);
-//        if (adm == null) {
-//            return false;
-//        }
-//        if (adm.getSenha().equals(senha)) return true;
-//        return false;
-//
-//    }
-//
-//    public static Admin logaAdm(String email, String senha) {
-//        Admin adm = obterAdminPorEmail(email);
-//
-//        if (adm == null) {
-//            return null;
-//        }
-//        if (adm.getSenha().equals(senha)) return adm;
-//        return null;
-//    }
-//
-//    private static Admin obterAdminPorEmail(String email) {
-//        ArrayList<Admin> adms = obterAdms();
-//        for (Admin adm : adms) {
-//            if (adm.getEmail().equals(email)) {
-//                return adm;
-//            }
-//        }
-//        return null;
-//    }
-
     // Clientes
 
 
@@ -131,16 +50,6 @@ public abstract class Dados {
     //ADM
 
 
-
-    public static Produto obterProdutoPorNome(String nome) {
-        ArrayList<Produto> produtos = obterProdutos();
-        for (Produto prod : produtos) {
-            if (prod.getNome().equals(nome)) {
-                return prod;
-            }
-        }
-        return null;
-    }
 
     //ADM
 

@@ -70,6 +70,7 @@ public class Interfaces {
             }
 
             if (usuarioLogado != null) {
+
                 JOptionPane.showMessageDialog(painelPrincipal, "Usuário logado com sucesso");
                 CarregaCarrinho();
                 painelCardapio = criaPainelProdutos();
@@ -92,7 +93,8 @@ public class Interfaces {
         paginaCadastro.getBotaoCadastrar().addActionListener(_ -> {
             String nome = paginaCadastro.getNome().getText();
             String email = paginaCadastro.getEmail().getText();
-            String senha1 = new String(paginaCadastro.getSenha().getPassword());
+            String senha1 = Arrays.toString(paginaCadastro.getSenha().getPassword());
+            System.out.println(senha1);
             String senha2 = new String(paginaCadastro.getSenha2().getPassword());
 
             if (!senha1.equals(senha2)) {
@@ -139,7 +141,8 @@ public class Interfaces {
 
     }
 
-    public JPanel criaPainelProdutos() {
+    private JPanel criaPainelProdutos() {
+        PaginaCardapioProdutos.getCampoSaldo().setText(usuarioLogado.getSaldo() + "");
         PaginaCardapioProdutos.carregaPainelPrincipal(produto -> {
             if (usuarioLogado == null) {
                 JOptionPane.showMessageDialog(painelPrincipal, "Usuário não está logado.");
@@ -147,6 +150,7 @@ public class Interfaces {
             }
             try {
                 usuarioLogado.adicionaProdutoCarrinho(produto);
+                usuarioLogado.getCarrinho().adicionaValor(produto.getPreco());
                 Dados.atualizaUsuario(usuarioLogado.getId(), usuarioLogado);
                 usuarioLogado = (Cliente)Cliente.logarUsuario(usuarioLogado.getEmail(), usuarioLogado.getSenha());
                 CarregaCarrinho();
@@ -159,20 +163,30 @@ public class Interfaces {
 
     }
 
-    public void CarregaCarrinho() {
+    private void CarregaCarrinho() {
         painelCarrinhoUsuario = PaginaCarrinho.getPainelCarrinho(usuarioLogado);
         painelCarrinhoUsuario.revalidate();
         painelCarrinhoUsuario.repaint();
 
         PaginaCarrinho.getBotaoVoltar().addActionListener(_ -> TrocarParaPainel("Pagina de Cardapio"));
         PaginaCarrinho.getBotaoComprar().addActionListener(_ -> {
+            if(usuarioLogado.getSaldo() <= usuarioLogado.getCarrinho().getValorTotal()){
+                JOptionPane.showMessageDialog(painelPrincipal,"Saldo insuficiente");
+                return;
+            }
+
             try {
-            usuarioLogado.limpaCarrinho();
-            Dados.atualizaUsuario(usuarioLogado.getId(), usuarioLogado);
-            usuarioLogado = (Cliente)Cliente.logarUsuario(usuarioLogado.getEmail(), usuarioLogado.getSenha());
-            CarregaCarrinho();
-            painelCarrinhoUsuario.revalidate();
-            painelCarrinhoUsuario.repaint();
+                usuarioLogado.paga(usuarioLogado.getCarrinho().getValorTotal());
+                usuarioLogado.limpaCarrinho();
+                PaginaCardapioProdutos.getCampoSaldo().setText(usuarioLogado.getSaldo() + "");
+                painelCardapio.revalidate();
+                painelCardapio.repaint();
+                JOptionPane.showMessageDialog(painelPrincipal,"Sua compra foi realizada com sucesso ");
+                Dados.atualizaUsuario(usuarioLogado.getId(), usuarioLogado);
+                usuarioLogado = (Cliente)Cliente.logarUsuario(usuarioLogado.getEmail(), usuarioLogado.getSenha());
+                CarregaCarrinho();
+                painelCarrinhoUsuario.revalidate();
+                painelCarrinhoUsuario.repaint();
             }catch (UsuarioInvalido ex){
                 JOptionPane.showMessageDialog(painelCarrinhoUsuario, ex.getMessage());
             }
@@ -181,8 +195,7 @@ public class Interfaces {
 
     }
 
-    public void carregaBotoesCardapio(){
-
+    private void carregaBotoesCardapio(){
         PaginaCardapioProdutos.getBotaoVoltar().addActionListener(_ -> {
             TrocarParaPainel("Pagina de Login");
             if (usuarioLogado != null) usuarioLogado.getCarrinho().imprimeCarrinh();

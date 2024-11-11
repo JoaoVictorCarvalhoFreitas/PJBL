@@ -12,6 +12,7 @@ public class CardapioProdutos {
     private ArrayList<Produto> produtos;
     private JButton botaoCarrinho;
     private JPanel topPanel;
+    private JTextField campoSaldo = new JTextField();
 
     public CardapioProdutos() {
     }
@@ -19,27 +20,29 @@ public class CardapioProdutos {
     public void carregaPainelPrincipal(Consumer<Produto> onComprarProduto) {
         panelPrincipal = new JPanel(new BorderLayout());
 
-        // Configuração do botão "Voltar" no painel superior
         botaoVoltar = new JButton("Voltar");
         topPanelLeft = new JPanel(new FlowLayout(FlowLayout.LEFT));
         topPanelLeft.add(botaoVoltar);
         topPanelLeft.setPreferredSize(new Dimension(100, 60));
 
-        // Configuração do botão "Carrinho" no painel superior
+
+        campoSaldo.setEditable(false);
+        campoSaldo.setHorizontalAlignment(SwingConstants.CENTER);
+        campoSaldo.setColumns(10);
+        topPanelLeft.add(campoSaldo);
+
         botaoCarrinho = new JButton("Carrinho");
         topPanelRight = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         topPanelRight.add(botaoCarrinho);
         topPanelRight.setPreferredSize(new Dimension(100, 60));
 
-        // Painel superior com "Voltar" e "Carrinho"
         topPanel = new JPanel(new BorderLayout());
         topPanel.add(topPanelLeft, BorderLayout.WEST);
         topPanel.add(topPanelRight, BorderLayout.EAST);
         panelPrincipal.add(topPanel, BorderLayout.NORTH);
 
-        // Configuração do painel de produtos
         panelProdutos = new JPanel();
-        panelProdutos.setLayout(new GridLayout(0, 2, 10, 10)); // Grid de duas colunas
+        panelProdutos.setLayout(new GridLayout(0, 2, 10, 10));
         panelProdutos.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         recuperaProdutos();
@@ -51,10 +54,12 @@ public class CardapioProdutos {
     }
 
     private void recuperaProdutos() {
-        produtos = Dados.obterProdutos(); // Assume-se que Dados.obterProdutos() retorne a lista de produtos atualizada
+        produtos = Dados.obterProdutos();
     }
 
-    // Nova função para atualizar um card específico em vez de toda a lista
+    public JTextField getCampoSaldo() {
+        return campoSaldo;
+    }
     private void atualizarCardProduto(Produto produto, JPanel card) {
         JLabel precoLabel = new JLabel(String.format("Preço: R$ %.2f", produto.getPreco()));
         card.add(precoLabel, BorderLayout.CENTER);
@@ -78,8 +83,7 @@ public class CardapioProdutos {
             JButton comprarButton = new JButton("Comprar");
             comprarButton.addActionListener(e -> {
                 onComprarProduto.accept(produto);
-                JOptionPane.showMessageDialog(panelPrincipal, "Produto " + produto.getNome() + " adicionado ao carrinho com sucesso.");
-                atualizarCardProduto(produto, card); // Atualiza apenas o card do produto comprado
+                atualizarCardProduto(produto, card);
             });
 
             JPanel infoPanel = new JPanel();

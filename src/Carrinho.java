@@ -4,18 +4,31 @@ import java.util.Set;
 
 public class Carrinho implements Serializable {
     private ArrayList<Produto> carrinho = new ArrayList<>();
+    private double valorTotal = 0;
 
     public void adicionarProduto(Produto produto) {
         carrinho.add(produto);
     }
 
+    public void setValorTotal(double valor) {
+        valorTotal = valor;
+    }
+    public void adicionaValor(double valor) {
+        valorTotal += valor;
+    }
+
+    public double getValorTotal() {
+        return valorTotal;
+    }
+
+
     public void deletaItemCarrinho(Produto produto) {
         carrinho.remove(produto);
     }
 
-    public void imprimeCarrinh(){
+    public void imprimeCarrinh() {
         for (Produto produto : carrinho) {
-            System.out.println("Produto: "+ produto.getNome());
+            System.out.println("Produto: " + produto.getNome());
         }
     }
 
@@ -30,6 +43,7 @@ public class Carrinho implements Serializable {
         }
         return lista;
     }
+
 
 
 
