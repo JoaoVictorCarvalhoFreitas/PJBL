@@ -20,6 +20,7 @@ public class PaginaCarrinho {
     private JPanel PainelLabelProdutos;
     private JScrollPane PainelTabelaProdutos;
     private JTable TabelaProdutos;
+    JButton botaoRetirarProdutos;
 
 
     public PaginaCarrinho() {
@@ -43,7 +44,12 @@ public class PaginaCarrinho {
         return PainelCarrinho;
     }
 
+
     private JTable constroiTabelaProdutos(Cliente cliente) {
+
+        botaoRetirarProdutos = new JButton("Retirar");
+
+
         DefaultTableModel model = new DefaultTableModel(new Object[]{"Nome", "Quantidade", "Preço"}, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -77,6 +83,7 @@ public class PaginaCarrinho {
 
             }
         });
+
         return TabelaProdutos;
     }
 

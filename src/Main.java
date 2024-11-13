@@ -11,25 +11,28 @@ public class Main {
 //        frame.setVisible(true);
 
         Admin Admin = new Admin(1,"AdmJoao","adm","adm");
-        Admin.salvarProduto("cafe preto","cafe brasileiro", 1.99);
-        Admin.salvarProduto("cafe branco","cafe branco", 0.99);
-        Admin.salvarProduto("cafe amarelo","cafe estranho", 10.99);
-        Admin.salvarProduto("cafe marrom","cafe com leite", 2.99);
-        Admin.salvarProduto("cafe preto1","cafe", 1.99);
-        Admin.salvarProduto("cafe preto11","cafe", 1.99);
-        Admin.salvarProduto("Javacafe","cafe depressivo", 999.9);
-        //
-        Dados.cadastraCliente("Joao","Joao@Joao","0");
-        Dados.cadastraCliente("Joao1","Joao@Joao1","1");
-        Dados.cadastraCliente("Joao2","Joao@Joao2","12");
-        Dados.cadastraCliente("Joao3","Joao@Joao3","123");
-        Dados.cadastraCliente("Joao4","Joao@Joao4","1234");
-        Dados.cadastraCliente("Joao5","Joao@Joao5","12345");
-        Dados.cadastraCliente("Joao6","Joao@Joao6","123456");
+//        Admin.salvarProduto("cafe preto","cafe brasileiro", 1.99);
+//        Admin.salvarProduto("cafe branco","cafe branco", 0.99);
+//        Admin.salvarProduto("cafe amarelo","cafe estranho", 10.99);
+//        Admin.salvarProduto("cafe marrom","cafe com leite", 2.99);
+//        Admin.salvarProduto("cafe preto1","cafe", 1.99);
+//        Admin.salvarProduto("cafe preto11","cafe", 1.99);
+//        Admin.salvarProduto("Javacafe","cafe depressivo", 999.9);
+//        //
+//        Dados.cadastraCliente("Joao","Joao@Joao","0");
+//        Dados.cadastraCliente("Joao1","Joao@Joao1","1");
+//        Dados.cadastraCliente("Joao2","Joao@Joao2","12");
+//        Dados.cadastraCliente("Joao3","Joao@Joao3","123");
+//        Dados.cadastraCliente("Joao4","Joao@Joao4","1234");
+//        Dados.cadastraCliente("Joao5","Joao@Joao5","12345");
+//        Dados.cadastraCliente("Joao6","Joao@Joao6","123456");
 
         Dados.cadastraNovoUsuarioCliente(Admin);
 
 
+//        ArrayList<String> list = new ArrayList<>(10);
+//
+//        System.out.println(list.get(2));
 
 //        Dados.cadastraNovoUsuarioCliente(Admin);
 ////        Dados.deletaUsuario("Joao@Joao");
@@ -47,4 +50,5 @@ public class Main {
 
 
     }
+
 }

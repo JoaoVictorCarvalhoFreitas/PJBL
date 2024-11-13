@@ -4,19 +4,6 @@ import java.util.ArrayList;
 public abstract class Dados {
     private static final String arquivoUsuario = "Usuarios.ser";
 
-
-    // Clientes
-
-
-    //PRODUTOS
-
-    //ADM
-
-    //ADM
-
-
-    //ADM
-
     public static ArrayList<Produto> obterProdutos() {
         ArrayList<Produto> produtos = new ArrayList<>();
         String arquivoProdutos = "produtos.ser";
@@ -151,6 +138,16 @@ public abstract class Dados {
     public static void cadastraCliente(String nome,String email,String senha){
         int id = obterUsuarios().size()+1;
         cadastraNovoUsuarioCliente(new Cliente(id,nome,email,senha));
+    }
+
+    public static boolean usuarioExiste(String email){
+        ArrayList<Usuario> usuarios = obterUsuarios();
+        for (Usuario c : usuarios) {
+            if (c.getEmail().equals(email)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void atualizarUsuarioCliente(int id, Cliente cliente) throws UsuarioInvalido {

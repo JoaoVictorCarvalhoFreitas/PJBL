@@ -22,9 +22,6 @@ public class Cliente extends Usuario implements Serializable {
         this.carrinho = new Carrinho();
     }
 
-    public void adicionaSaldo(double valor){
-        saldo += valor;
-    }
     public double getSaldo(){
         return saldo;
     }

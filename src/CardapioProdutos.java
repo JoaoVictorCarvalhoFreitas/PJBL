@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
@@ -81,6 +82,7 @@ public class CardapioProdutos {
             JLabel precoLabel = new JLabel(String.format("Preço: R$ %.2f", produto.getPreco()));
 
             JButton comprarButton = new JButton("Comprar");
+
             comprarButton.addActionListener(e -> {
                 onComprarProduto.accept(produto);
                 atualizarCardProduto(produto, card);
