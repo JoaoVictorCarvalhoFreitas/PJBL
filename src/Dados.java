@@ -34,22 +34,7 @@ public abstract class Dados {
         return null;
     }
 
-    //ADM
-
-
-
-    //ADM
-
-
-    //ADM
-
-
-    //ADM
-
-
-
-    //    CARRINHO
-
+    /**Deleta <b>Item</b> do <strong>CARRINHO</strong>*/
     public static void DeletarItemCarrinho(int idCliente, int idProduto) throws UsuarioInvalido{
         Cliente c;
         c = Dados.obterClientePorId(idCliente);
@@ -61,7 +46,7 @@ public abstract class Dados {
         }
     }
 
-    //UsuarioCliente
+    /**Retorna os <b>Usuários</b>*/
     public static ArrayList<Usuario> obterUsuarios(){
         ArrayList<Usuario> usuarios = new ArrayList<>();
         try (FileInputStream fileIn = new FileInputStream(arquivoUsuario);
@@ -81,6 +66,7 @@ public abstract class Dados {
         return usuarios;
     }
 
+    /**Resgata o <b>Cliente</b> pelo seu <b>Email</b>*/
     public static Usuario obterUsuarioPorEmail(String email) {
         ArrayList<Usuario>Clientes = obterUsuarios();
         for (Usuario c : Clientes) {
@@ -91,6 +77,7 @@ public abstract class Dados {
         return null;
     }
 
+    /**Resgata o <b>Cliente</b> pelo seu <b>ID</b>*/
     public static Cliente obterClientePorId(int id) {
         ArrayList<Usuario> usuarios;
         usuarios = obterUsuarios();
@@ -103,6 +90,7 @@ public abstract class Dados {
         return null;
     }
 
+    /**Cadastra um novo <b>Cliente</b>*/
     public static void cadastraNovoUsuarioCliente(Usuario usuario) {
         ArrayList<Usuario> usuarios = obterUsuarios();
 
@@ -135,6 +123,7 @@ public abstract class Dados {
 
     }
 
+    /**Insere um <b>ID</b> ao novo <b>Cliente</b>*/
     public static void cadastraCliente(String nome,String email,String senha){
         int id = obterUsuarios().size()+1;
         cadastraNovoUsuarioCliente(new Cliente(id,nome,email,senha));
@@ -166,6 +155,7 @@ public abstract class Dados {
         }
     }
 
+    /**Salva os <b>Usuários</b> em um <b>Arquivo</b>*/
     public static void salvaListaUsuarios(ArrayList<Usuario> us) throws UsuarioInvalido{
         try (FileOutputStream fileOut = new FileOutputStream(arquivoUsuario);
              ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
@@ -178,6 +168,7 @@ public abstract class Dados {
         }
     }
 
+    /**Resgata o Cliente pelo seu <b>ID</b>*/
     public static void atualizaUsuario(int id, Usuario u) throws UsuarioInvalido {
             ArrayList<Usuario> usuarios = obterUsuarios();
             for (int i = 0; i < usuarios.size(); i++) {
