@@ -32,6 +32,7 @@ public class Interfaces {
         JFrame frame = new JFrame();
         frame.setSize(800, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         // Adiciona os painéis ao painel principal
         painelPrincipal.add(painelLogin, "Pagina de Login");
@@ -100,7 +101,7 @@ public class Interfaces {
             if (!senha1.equals(senha2)) {
                 JOptionPane.showMessageDialog(painelCadastro, "Senhas Diferentes");
                 return;
-            } else if (nome.isBlank() || email.isBlank() || senha2.isBlank()) {
+            } else if (nome.isBlank() || email.isBlank() || senha1.isBlank() || senha2.isBlank()) {
                 JOptionPane.showMessageDialog(painelCadastro, "Email, nome ou senha devem ser todos preenchidos");
                 return;
             } else {
